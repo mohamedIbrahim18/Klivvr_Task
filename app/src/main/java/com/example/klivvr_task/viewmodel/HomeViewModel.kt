@@ -28,8 +28,7 @@ class HomeViewModel @Inject constructor(
     private val _loading = MutableStateFlow(true)
     val loading = _loading.asStateFlow()
 
-    fun fetchCities() {
-
+    init {
         runCatching {
             _loading.value = true
             viewModelScope.launch {
@@ -37,15 +36,15 @@ class HomeViewModel @Inject constructor(
                 val cityList = getAllCitiesUseCase()
                 _cities.value = cityList
                 _filteredCities.value = cityList
-               delay(5.seconds)
+                delay(5.seconds)
                 _loading.value = false
             }
         }.onFailure {
             _loading.value = false
 
         }
-
     }
+
 
     fun filterCities(prefix: String) {
         val lowerCasePrefix = prefix.lowercase()

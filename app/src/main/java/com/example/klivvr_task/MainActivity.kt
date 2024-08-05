@@ -30,7 +30,6 @@ class MainActivity : ComponentActivity() {
 }
 @Composable
 fun MainScreen(viewModel: HomeViewModel) {
-    viewModel.fetchCities()
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         content = { paddingValues ->
